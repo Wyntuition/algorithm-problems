@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.acme.GreetingResourceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-12-23T05:02:22" hostname="Winslows-MBP-2" time="1.032">
+  <properties/>
+  <testcase name="testHelloEndpoint()" classname="org.acme.GreetingResourceTest" time="1.032"/>
+  <system-out><![CDATA[2020-12-23 00:02:22,455 INFO  [io.quarkus] (Test worker) Quarkus 1.7.3.Final on JVM started in 1.142s. Listening on: http://0.0.0.0:8081
+2020-12-23 00:02:22,457 INFO  [io.quarkus] (Test worker) Profile test activated. 
+2020-12-23 00:02:22,457 INFO  [io.quarkus] (Test worker) Installed features: [cdi, resteasy]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

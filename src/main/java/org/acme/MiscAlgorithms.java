@@ -346,32 +346,61 @@ public class MiscAlgorithms {
         - Optimize: 
 
             Bottleneck: A*A
-                2-pass hash table
-                1-pass hash table 
+
+                Maintain a mapping of each array element to its index using a hash table, so we can just look up the index of a compliment, if it exists.  
+
+                2-pass w/ hash table - 
+                    We iterate the array to populate the hash table.
+                    Then we iterate it again, checking if each element's compliment (target - n) exists. 
+                    
+                    We go through numbers array twice, so O(n). Each hash table lookup is O(1). Space complexity is O(n).
+
+                BONUS, even better way? (see below code)
             
             Algorithm & data structures: 
                 index for beginning of window; loop for each element at index
     */    
-    
+
+    // Example: target sum 5 for [1,5,1,1,1,1,1,1,2,1,3]
     public static int[] twoSum(int[] numbers, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < numbers.length; i++) {
-            map.put(numbers[i], i);
+            map.put(numbers[i], i); // i.e. {1, 0}, {5, 1}, {1, 2}, etc
         }
         for (int i = 0; i < numbers.length; i++) {
-            int complement = target - numbers[i];
-            if (map.containsKey(complement) && map.get(complement) != i) {
+            int complement = target - numbers[i];  // i.e. 5 - 1 = 4, 
+            if (map.containsKey(complement) && map.get(complement) != i) { // i.e. for numbers[i] = 1, does 4 exist which would be the compliment? (numbers[1] + 4 = target of 5)
                 return new int[] { i, map.get(complement) };
             }
         }
-        throw new IllegalArgumentException("Sum not found");
+        return new int[] {0,0};
     }
     
     public static String runTwoSum() {
+        //int[] exampleNoSum = {1,1,1,1,1,1,1,1,1,1,1};
+        //int[] example2 = {1,5,1,1,1,1,1,1,2,1,3};
         int[] example1 = {1,5,1,1,1,1,1,1,2,1,3};
         //List<Integer> example1 = Arrays.asList(99,1,2,3,-5,99,7,0,25,30,50);
         var example1Answer = twoSum(example1, 5);
-        return "\n\n" + example1Answer[0] + ", " + example1Answer[1];
+        return "\n\nTwo sum:\n Indexes that yield target sum 5 for [1,5,1,1,1,1,1,1,2,1,3]: " + example1Answer[0] + ", " + example1Answer[1];
+    }
+
+    /* 1-pass w/ hash table - 
+        While we iterate and inserting elements into the table, we also look back to check if current element's complement already exists 
+        in the table. If it exists, we have found a solution and return immediately.
+        
+        We go through the numbers array once, so O(n). Each hash table lookup is O(1). Space complexity is O(n).
+    */
+    public int[] twoSumOnePassHash(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[] { map.get(complement), i };
+            }
+            map.put(nums[i], i);
+        }
+        throw new IllegalArgumentException("No two sum solution");
     }
 
 

@@ -1,0 +1,16 @@
+.gradle
+out
+build
+bin
+*.iml
+.DS_Store
+.envrc
+.java-version
+bin
+
+# VS Code
+.settings
+.vscode
+
+# IntelliJ
+.idea

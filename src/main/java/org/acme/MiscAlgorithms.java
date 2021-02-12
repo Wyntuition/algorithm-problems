@@ -317,7 +317,7 @@ public class MiscAlgorithms {
     }
 
     /* PROBLEM: 2 sum
-        - Category: sliding window, hash table
+        - Category: hash table
 
         Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
@@ -377,12 +377,17 @@ public class MiscAlgorithms {
     }
     
     public static String runTwoSum() {
-        //int[] exampleNoSum = {1,1,1,1,1,1,1,1,1,1,1};
-        //int[] example2 = {1,5,1,1,1,1,1,1,2,1,3};
+        StringBuilder output = new StringBuilder("\n\nTwo Sum:\n");
+        
         int[] example1 = {1,5,1,1,1,1,1,1,2,1,3};
-        //List<Integer> example1 = Arrays.asList(99,1,2,3,-5,99,7,0,25,30,50);
         var example1Answer = twoSum(example1, 5);
-        return "\n\nTwo sum:\n Indexes that yield target sum 5 for [1,5,1,1,1,1,1,1,2,1,3]: " + example1Answer[0] + ", " + example1Answer[1];
+        output.append("Indexes that yield target sum 5 for [1,5,1,1,1,1,1,1,2,1,3]: " + example1Answer[0] + ", " + example1Answer[1]);
+        
+        int[] exampleNoSum = {1,1,1,1,1,1,1,1,1,1,1};
+        var answer = twoSum(exampleNoSum, 5);
+        output.append("\n No sum found: " + + answer[0] + ", " + answer[1]);
+        
+        return output.toString();
     }
 
     /* 1-pass w/ hash table - 
